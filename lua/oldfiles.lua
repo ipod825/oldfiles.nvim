@@ -10,8 +10,11 @@ function M.setup(opts)
 	oldfiles = require("libp.datatype.Lru")(1000)
 
 	if vim.fn.filereadable(oldfiles_path) ~= 0 then
-		for _, f in ipairs(vim.fn.readfile(oldfiles_path)) do
-			oldfiles:add(f)
+		local paths = vim.fn.readfile(oldfiles_path)
+		require("libp.log").warn(paths)
+		for i = #paths, 1, -1 do
+			require("libp.log").warn(i, paths[i])
+			oldfiles:add(paths[i])
 		end
 	end
 
