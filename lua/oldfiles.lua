@@ -11,9 +11,7 @@ function M.setup(opts)
 
 	if vim.fn.filereadable(oldfiles_path) ~= 0 then
 		local paths = vim.fn.readfile(oldfiles_path)
-		require("libp.log").warn(paths)
 		for i = #paths, 1, -1 do
-			require("libp.log").warn(i, paths[i])
 			oldfiles:add(paths[i])
 		end
 	end
