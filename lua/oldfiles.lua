@@ -2,9 +2,13 @@ local M = {}
 local path = require("libp.path")
 
 local oldfiles_path = path.join(vim.fn.stdpath("data"), "oldfiles")
-local oldfiles = require("libp.datatype.Lru")(1000)
+local oldfiles
 
-function M.setup()
+function M.setup(opts)
+	vim.validate({ opts = { opts, "t", true } })
+	opts = opts or { cache_size = 1000 }
+	oldfiles = require("libp.datatype.Lru")(1000)
+
 	if vim.fn.filereadable(oldfiles_path) ~= 0 then
 		for _, f in ipairs(vim.fn.readfile(oldfiles_path)) do
 			oldfiles:add(f)
