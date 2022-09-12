@@ -7,7 +7,7 @@ local oldfiles
 function M.setup(opts)
 	vim.validate({ opts = { opts, "t", true } })
 	opts = opts or { cache_size = 1000 }
-	oldfiles = require("libp.datatype.Lru")(1000)
+	oldfiles = require("libp.datatype.LruList")(1000)
 
 	if vim.fn.filereadable(oldfiles_path) ~= 0 then
 		local paths = vim.fn.readfile(oldfiles_path)
