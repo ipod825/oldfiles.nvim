@@ -1,7 +1,7 @@
 local M = {}
-local path = require("libp.path")
+local pathfn = require("libp.utils.pathfn")
 
-local oldfiles_path = path.join(vim.fn.stdpath("data"), "oldfiles")
+local oldfiles_path = pathfn.join(vim.fn.stdpath("data"), "oldfiles")
 local oldfiles
 
 function M.setup(opts)
