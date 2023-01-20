@@ -35,6 +35,11 @@ function M.setup(opts)
 	})
 end
 
+
+function M.remove(entry)
+    oldfiles:remove(entry)
+end
+
 function M.oldfiles()
 	return oldfiles:values()
 end
